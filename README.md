@@ -10,8 +10,6 @@ Closed-Loop Control: Features a  PID control algorithm where the motor automatic
 
 ## Bill of Materials (BOM)
 
-## Bill of Materials (BOM)
-
 | Item | Quantity | Price (NTD) |
 | :--- | :--- | :--- |
 | MPU-6050 | 1 | 53 |
