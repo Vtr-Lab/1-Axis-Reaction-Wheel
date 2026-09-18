@@ -30,8 +30,6 @@ BOM:
 
 ## STEP 1: Assembly
 
-## STEP 2: Soldering
+## STEP 2: Wiring
 
-## STEP 3: Upload Code
-
-## STEP 4: CALIBRATE!!
+## STEP 3: Code
