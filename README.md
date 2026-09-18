@@ -20,6 +20,15 @@ BOM:
 | M3 nuts | 4 | 2 |
 | Counterweight nuts | 10 | 20 |
 | Counterweight bolts | 10 | 20 |
+| 24(OD)*8(ID)*8 thick bearing(mm) | 1 | 20 |
 | XH2.54 3 pin connector | 1 | 4 |
 | 3D printed parts | 9 | - |
-| **Sum** | | **553 NTD** |
+| **Sum** | | **573 NTD** |
+
+STEP 1: Assembly
+
+STEP 2: Soldering
+
+STEP 3: Upload Code
+
+STEP 4: CALIBRATE!!
