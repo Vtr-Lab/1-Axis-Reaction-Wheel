@@ -10,7 +10,7 @@ BOM:
 | ESP32-DevKit | 1 | 143 |
 | DC TT motor (single axis) | 1 | 50 |
 | TB6612FNG Motor Driver | 1 | 22 |
-| LiPo Battery | 1 | 210 |
+| 7.4v LiPo Battery | 1 | 210 |
 | Perfboard (5x7cm) | 1 | 15 |
 | M4 screw * 50mm | 4 | 4 |
 | M4 nuts | 4 | 4 |
