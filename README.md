@@ -8,7 +8,6 @@ Accessible Hardware: Built entirely using off-the-shelf components, an ESP32, an
 
 Closed-Loop Control: Features a  PID control algorithm where the motor automatically adjusts its speed to fight external forces and maintain balanced.
 
-BOM:
 ## Bill of Materials (BOM)
 
 | Item | Quantity | Price (NTD) |
