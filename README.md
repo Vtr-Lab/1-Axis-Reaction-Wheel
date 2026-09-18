@@ -25,10 +25,13 @@ BOM:
 | 3D printed parts | 9 | - |
 | **Sum** | | **573 NTD** |
 
-STEP 1: Assembly
+## Product Overview:
+1-axis reaction wheel:
 
-STEP 2: Soldering
+## STEP 1: Assembly
 
-STEP 3: Upload Code
+## STEP 2: Soldering
 
-STEP 4: CALIBRATE!!
+## STEP 3: Upload Code
+
+## STEP 4: CALIBRATE!!
