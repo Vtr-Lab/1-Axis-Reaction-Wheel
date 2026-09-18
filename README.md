@@ -38,4 +38,4 @@ Closed-Loop Control: Features a  PID control algorithm where the motor automatic
 
 ## STEP 2: Wiring
 
-## STEP 3: Code
+## STEP 3: Tuning
