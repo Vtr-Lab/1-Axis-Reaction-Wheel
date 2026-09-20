@@ -16,6 +16,7 @@ Closed-Loop Control: Features a  PID control algorithm where the motor automatic
 | ESP32-DevKit | 1 | 143 |
 | DC TT motor (single axis) | 1 | 50 |
 | TB6612FNG Motor Driver | 1 | 22 |
+| LM2596 | 1 | 50 |
 | LiPo Battery | 1 | 210 |
 | Perfboard (5*7cm) | 1 | 15 |
 | M4 screw * 50mm | 4 | 4 |
@@ -28,7 +29,7 @@ Closed-Loop Control: Features a  PID control algorithm where the motor automatic
 | 24(OD)*8(ID)*8 thick bearing (mm) | 1 | 20 |
 | XH2.54 3 pin connector | 1 | 4 |
 | 3D printed parts | 5 | 0 |
-| **Sum** | | **NTD$ 572** |
+| **Sum** | | **NTD$ 610** |
 
 
 ## Product Overview:
