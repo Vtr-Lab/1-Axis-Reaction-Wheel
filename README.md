@@ -1,5 +1,5 @@
 # Reaction-Wheel
-
+<img width="1915" height="1081" alt="Screenshot 2026-09-21 094216" src="https://github.com/user-attachments/assets/a23e4a2b-94e7-4ec0-9525-de6a9dbe6ba6" />
 ## The Perfect Weekend Project
 This is the project I always wished I had when I first started tinkering and getting into the maker world back in 9th grade. Back then, I was always searching for something built with accessible parts and straightforward assembly, but one that still packed a real technical aspect. This reaction wheel prototype is built to be just what I always envisioned; it features the exact same physical principles that real satellites use in space for attitude control, utilizing the conservation of angular momentum from an internal spinning flywheel. Best of all, it features a PID control algorithm, which is a concept that pops up in almost every automation and robotics project I've ever wanted to build. That is why I made it. (Sophomore me could finally fulfill the dreams and ideas of freshman me!!!)
 
