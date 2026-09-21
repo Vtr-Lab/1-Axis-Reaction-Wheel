@@ -35,8 +35,10 @@ Closed-Loop Control: Features a  PID control algorithm where the motor automatic
 ## Product Overview:
 1-axis reaction wheel: It self-balances on one axis(side of a cube).
 
-## STEP 1: Assembly
+## STEP 1: Assembly and Wiring
 Refer to the [Assembly Instructions Google Doc](https://docs.google.com/document/d/1aEVjV9toqsNxJIusX6yg7DXPMAjhrYVz725-x2guhmM/edit?usp=sharing) for step-by-step guidance.
-## STEP 2: Wiring
+
+## STEP 2: Code
 
 ## STEP 3: Tuning
+
