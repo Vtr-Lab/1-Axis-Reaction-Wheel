@@ -44,3 +44,4 @@ Refer to the [Assembly Instructions Google Doc](https://docs.google.com/document
 ## STEP 3: Tuning
 
 ## Final: Demo Video
+Follow me on instgram!!! @vtr_lab much appreciated!
