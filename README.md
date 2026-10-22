@@ -1,151 +1,202 @@
-# 1-Axis-Reaction-Wheel
+# 1-Axis Reaction Wheel
 
-An affordable, open-source reaction wheel balancing project inspired by spacecraft attitude control.
+A low-cost, open-source reaction wheel that brings satellite attitude-control principles into a hands-on engineering project.
 
-![Reaction Wheel Prototype](https://private-user-images.githubusercontent.com/236556372/655486252-a23e4a2b-94e7-4ec0-9525-de6a9dbe6ba6.png)
+<!-- Replace this path with an image committed to the repository. -->
+![1-Axis Reaction Wheel Prototype](images/prototype.png)
 
-## The Perfect Weekend Project
+## Table of Contents
 
-This is the project I always wished I had when I first started tinkering and exploring the maker world in 9th grade.
+- [About the Project](#about-the-project)
+- [How It Works](#how-it-works)
+- [Hardware](#hardware)
+- [Bill of Materials](#bill-of-materials)
+- [Mechanical Design](#mechanical-design)
+- [Assembly and Wiring](#assembly-and-wiring)
+- [Firmware and Control](#firmware-and-control)
+- [PID Tuning](#pid-tuning)
+- [Demo](#demo)
+- [Future Development](#future-development)
+- [Follow the Project](#follow-the-project)
 
-Back then, I was always looking for a project that used accessible parts and straightforward assembly but still involved real engineering. I wanted something that went beyond simply following instructions — something that would help me understand the principles behind the machines and systems I was curious about.
-
-This reaction wheel prototype is my attempt to build exactly that.
-
-It demonstrates the same fundamental physical principle used by spacecraft for attitude control: **conservation of angular momentum**. By accelerating or decelerating an internal flywheel, the system generates torque that changes the orientation of the surrounding structure.
-
-The project also introduces closed-loop control through a PID controller, a technique widely used in robotics, automation, and aerospace engineering.
-
-Most importantly, I want this to be a project that other people can actually build, experiment with, and learn from.
-
-Sophomore me finally gets to build something that freshman me dreamed about.
+---
 
 ## About the Project
 
-The goal is to create an affordable, one-axis reaction wheel that can balance along one axis of a cube-like frame.
+This is the project I always wished I had when I first started tinkering and exploring the maker world in ninth grade.
 
-### Key Features
+Back then, I was looking for something that could be built with accessible components and straightforward assembly, while still teaching real engineering concepts. I wanted a project that went beyond simply following instructions and gave me the opportunity to experiment with mechanical design, embedded systems, sensors, and control theory.
 
-- **Accessible hardware:** Uses commonly available electronic components and 3D-printed mechanical parts.
-- **Reaction wheel physics:** Demonstrates how changing flywheel momentum produces reaction torque.
-- **Closed-loop control:** Uses an ESP32 and MPU-6050 IMU to measure orientation and support PID-based balancing.
-- **Low-cost construction:** Designed around inexpensive parts, simple fabrication, and accessible tools.
-- **Hands-on learning:** Provides an opportunity to experiment with sensor measurements, motor control, feedback systems, and PID tuning.
+This reaction wheel is my attempt to build exactly that.
 
-### How It Works
+It uses the same fundamental physical principle employed by satellites to control their orientation: **conservation of angular momentum**. An internal flywheel accelerates or decelerates to generate a reaction torque, allowing the structure to counteract changes in its orientation.
 
-The MPU-6050 measures the frame's motion. The ESP32 processes the sensor readings and uses a PID controller to calculate a motor command. The motor accelerates or decelerates the reaction wheel, generating a reaction torque on the frame.
+The project also incorporates PID control, a technique used throughout robotics, automation, and control engineering.
 
-The controller continuously repeats this process to counter disturbances and bring the frame toward its target angle.
+Sophomore me finally gets to build what freshman me dreamed about.
 
-This project demonstrates **one-axis attitude control**, rather than full three-axis spacecraft control.
+## How It Works
 
-## Hardware Overview
+The system combines three main elements:
 
-The current prototype uses:
+1. **Orientation sensing:** An MPU-6050 measures angular velocity and acceleration to estimate the system's tilt.
+2. **Feedback control:** An ESP32 processes the sensor readings and calculates the correction required to reduce the tilt error.
+3. **Reaction wheel actuation:** A motor spins the flywheel to generate torque in the opposite direction, helping the system recover its balance.
 
-- ESP32 DevKit
-- MPU-6050 inertial measurement unit (IMU)
-- DC TT motor
-- TB6612FNG motor driver
-- LM2596 buck converter
-- LiPo battery
-- Custom 3D-printed structural parts
-- Bearings, fasteners, and counterweights
+The controller continuously repeats this process to correct disturbances and maintain the target orientation.
 
-The frame and mechanical components are designed for fabrication with a consumer 3D printer. The current parts were printed in PETG using a Bambu Lab A1.
+## Hardware
 
-## Bill of Materials (BOM)
+The current design uses a dedicated motor with an integrated driver and encoder feedback, controlled by a custom ESP32-based PCB.
 
-Prices are listed in New Taiwan dollars (NTD) and reflect the costs recorded for this prototype. Prices may vary by supplier.
+| Component | Purpose |
+|---|---|
+| ESP32 DevKit V1 | Main controller and wireless communication |
+| MPU-6050 IMU | Measures acceleration and angular velocity |
+| Nidec 24H055M020 motor | Drives the reaction wheel; includes an integrated motor driver |
+| Custom PCB | Connects the controller, sensor, motor-control signals, and power circuitry |
+| Mini560 5 V / 5 A buck converter | Steps down the 3S battery voltage to power the ESP32 |
+| 3S LiPo battery | Supplies the motor and system power |
+| 330 µF, 25 V capacitor | Helps stabilize the battery input and absorb supply transients |
+| Resistors | Signal conditioning, including the motor feedback voltage divider |
+| 2N3904 NPN transistor | Switches the motor's active-low brake input |
+| Connectors and wiring | Connect the battery, motor, and other hardware |
+| Bearings, fasteners, and counterweights | Support the rotating assembly and provide the required flywheel mass |
+| 3D-printed structural parts | Form the frame, motor mount, and mechanical assembly |
 
-| Item | Quantity | Price (NTD) |
-|---|---:|---:|
-| MPU-6050 | 1 | 53 |
-| ESP32 DevKit | 1 | 143 |
-| DC TT motor | 1 | 50 |
-| TB6612FNG motor driver | 1 | 22 |
-| LM2596 buck converter | 1 | 50 |
-| LiPo battery | 1 | 210 |
-| Perfboard (5 × 7 cm) | 1 | 15 |
-| M4 × 50 mm screws | 4 | 4 |
-| M4 nuts | 4 | 4 |
-| M3 × 9 mm screws | 2 | 2 |
-| M3 nuts | 2 | 2 |
-| Zip ties | 3 | 3 |
-| Counterweight nuts | 10 | 20 |
-| Counterweight bolts | 10 | 20 |
-| Bearing (24 mm OD × 8 mm ID × 8 mm thick) | 1 | 20 |
-| XH2.54 3-pin connector | 1 | 4 |
-| 3D-printed parts | 5 | 0 |
-| **Total recorded cost** | | **NT$610** |
+### Motor and Control Interface
 
-The recorded total is NT$610. This is the parts cost for the listed prototype, not necessarily the full cost of tools, shipping, spare parts, or future revisions.
+The Nidec motor is different from a conventional bare DC motor: it has an integrated driver and accepts control signals rather than connecting directly to a typical H-bridge.
 
-## Product Overview
+The ESP32 interfaces with the motor through:
 
-The current design is a **one-axis reaction wheel** that aims to balance along one side of a cube-like frame.
+- **PFM:** Controls the motor command through pulse-frequency modulation.
+- **Direction:** Selects the direction of rotation.
+- **Brake:** Controls the motor's braking input.
+- **FG feedback:** Provides a motor feedback signal for monitoring rotation.
+- **Enable:** Enables the motor through the motor's specified power connection.
 
-The project is intended as a learning platform as much as a working prototype. Its main goal is to make the underlying physics and control concepts understandable through a real, buildable system.
+The custom PCB also includes signal-conditioning circuitry to interface the motor feedback with the ESP32's 3.3 V GPIO.
 
-## Build Instructions
+## Bill of Materials
 
-### Step 1: Assembly and Wiring
+The following list describes the current PCB-based design. Prices should be filled in using the actual purchase costs for this revision rather than carried over from the earlier TT motor prototype.
 
-Follow the [Assembly Instructions](https://docs.google.com/document/d/1aEVjV9toqsNxJIusX6yg7DXPMAjhrYVz725-x2guhmM/edit?usp=sharing) for the step-by-step assembly and wiring process.
+| Item | Quantity | Notes |
+|---|---:|---|
+| ESP32 DevKit V1 | 1 | Main controller |
+| MPU-6050 module | 1 | IMU |
+| Nidec 24H055M020 | 1 | Integrated-driver motor |
+| Mini560 5 V / 5 A buck converter | 1 | Battery-to-5 V conversion |
+| 3S LiPo battery | 1 | 11.1 V nominal, 12.6 V fully charged |
+| Custom PCB | 1 | Controller, power, and signal interface |
+| 330 µF, 25 V capacitor | 1 | Battery input capacitor |
+| Resistors | As required | Feedback divider and transistor circuitry |
+| 2N3904 NPN transistor | 1 | Brake switching |
+| Motor and battery connectors | As required | Match the PCB footprints and wiring |
+| Wires and solder | As required | Electrical assembly |
+| Bearings | As required | Flywheel support |
+| Fasteners and counterweights | As required | Mechanical assembly |
+| 3D-printed parts | As required | Frame and mounting components |
 
-The guide covers the physical construction and electronics setup required to put the prototype together.
+**Note:** This list reflects the newer motor and PCB architecture. It does not include the old TB6612FNG driver, TT motor, or LM2596 module from the original prototype.
 
-### Step 2: Firmware
+## Mechanical Design
 
-The ESP32 firmware handles sensor readings, orientation estimation, motor commands, and the balancing control loop.
+The reaction wheel assembly consists of a structural frame, motor mount, rotating flywheel, bearing support, and counterweights.
 
-The code and setup instructions will be documented here as the firmware is finalized.
+The mechanical design needs to balance several considerations:
 
-Planned documentation:
+- Sufficient flywheel inertia to generate useful reaction torque.
+- Secure motor and bearing mounting.
+- Low friction in the rotating assembly.
+- Reliable retention of the counterweights at operating speed.
+- Enough clearance to prevent the flywheel from contacting the frame.
 
-- Arduino IDE and ESP32 setup
-- MPU-6050 configuration and sensor calibration
-- Motor control and direction
-- PID implementation
-- Firmware upload and troubleshooting
+The structural parts are designed for 3D printing, making the assembly accessible to makers with desktop printers.
 
-### Step 3: PID Tuning
+## Assembly and Wiring
 
-PID tuning determines how aggressively the system responds to tilt and how well it settles toward its target angle.
+### Step 1 — Build the Mechanical Assembly
 
-The tuning guide will cover:
+Print the structural components, install the bearings and motor, and assemble the flywheel and counterweights.
 
-- Understanding proportional, integral, and derivative gains
-- Establishing a safe starting point
-- Adjusting gains systematically
-- Recognizing oscillation, overshoot, and slow correction
-- Recording and comparing tuning results
+Check that the wheel rotates freely and that all rotating hardware is secured before powering the motor.
 
-The objective is not just to obtain a balancing system, but to understand why different controller settings produce different behavior.
+### Step 2 — Assemble the Electronics
+
+Install the ESP32, IMU, buck converter, and supporting components. Connect the motor's power and control interfaces to the appropriate PCB connections.
+
+The motor supply, controller supply, and sensor circuitry must be wired according to the schematic. Keep high-current motor return paths away from sensitive sensor signal routing, while maintaining the required common electrical reference.
+
+### Step 3 — Connect the Battery
+
+Use a compatible 3S LiPo battery and verify the power connections, polarity, and regulated 5 V output before connecting the controller.
+
+Do not connect or disconnect the battery while the circuit is powered, and keep the flywheel clear of hands and loose objects during testing.
+
+### Detailed Assembly Guide
+
+Follow the assembly document for the detailed mechanical and electrical build process:
+
+[Open the Assembly Instructions](https://docs.google.com/document/d/1aEVjV9toqsNxJIusX6yg7DXPMAjhrYVz725-x2guhmM/edit?usp=sharing)
+
+## Firmware and Control
+
+The ESP32 runs the sensor-processing and control logic.
+
+The firmware is intended to handle:
+
+- IMU initialization and orientation estimation.
+- Motor command generation.
+- Direction and braking control.
+- Feedback monitoring.
+- PID control and parameter adjustment.
+- Wireless communication for future tuning and visualization features.
+
+**Firmware:** Add the current, tested Arduino sketch and its required library dependencies to the repository before treating this section as a complete setup guide.
+
+## PID Tuning
+
+PID control combines three terms to calculate the correction applied to the system.
+
+- **Proportional (P):** Responds to the current orientation error.
+- **Integral (I):** Accumulates error over time to correct persistent offsets.
+- **Derivative (D):** Responds to the rate of change of error to help reduce oscillation.
+
+A practical tuning process is to begin with conservative settings, increase proportional gain until the system responds meaningfully, and then adjust derivative gain to manage oscillation. Add integral gain only when persistent error requires it.
+
+Start with the flywheel securely mounted, a clear test area, and conservative motor commands. Tune one parameter at a time and record the results.
 
 ## Demo
 
-A demonstration video will be added here once the prototype's performance has been recorded.
+Add a video showing the completed assembly, startup procedure, and balancing performance.
+
+- **Build video:** To be added.
+- **Balancing demonstration:** To be added.
+- **Control and tuning demonstration:** To be added.
 
 ## Future Development
 
-Potential improvements include:
+Planned improvements include:
 
-- Wireless PID tuning from a phone
-- Real-time sensor and controller data visualization
-- More detailed build documentation
-- Improved mechanical and electrical integration
-- Expansion toward multi-axis reaction wheel systems
+- A phone-friendly interface for wireless control.
+- Live IMU and motor feedback plots.
+- Adjustable PID parameters without reflashing the firmware.
+- A simple 2D visualization of the reaction wheel's orientation.
+- More detailed build documentation and troubleshooting guides.
+- Further experiments with reaction wheel sizing, control response, and system stability.
+
+The long-term goal is to make the project useful not only as a working prototype, but also as a teaching platform for mechanical engineering, embedded systems, and control theory.
 
 ## Contributing
 
-Suggestions, improvements, and discussions are welcome. If you build your own version, experiment with the design, or find a way to improve the hardware or control algorithm, feel free to share your results.
-
-The goal is to make reaction wheel control more approachable for students, makers, and anyone interested in engineering.
+Suggestions, improvements, and documented experiments are welcome. If you build your own version, consider sharing your hardware changes, tuning results, and lessons learned so others can reproduce and improve the design.
 
 ## Follow the Project
 
-Follow my engineering projects on Instagram: **[@vtr_lab](https://www.instagram.com/vtr_lab/)**
+Follow along with the build process and future updates on Instagram:
 
-Thanks for checking out the project.
+**Instagram:** [@vtr_lab](https://www.instagram.com/vtr_lab/)
+
+Thanks for checking out the project!
